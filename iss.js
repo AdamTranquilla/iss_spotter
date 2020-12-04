@@ -14,11 +14,11 @@ const fetchMyIP = function(callback) {
 
 const fetchCoordsByIP = function(ip, callback) {
   request('https://freegeoip.app/json/', (error, response, body) => {
-/*     if (error) callback(error, null);
+    if (error) callback(error, null);
     if (response.statusCode !== 200) {
       callback(Error(`Status Code ${response.statusCode} when fetching IP. Response: ${body}`), null);
       return;
-    } */
+    }
     const lat = JSON.parse(body).latitude;
     const lng = JSON.parse(body).longitude;
     console.log(lat)
@@ -27,7 +27,7 @@ const fetchCoordsByIP = function(ip, callback) {
 };
 
 const fetchISSFlyOverTimes = function(coords, callback) {
-  request(`http://api.open-notify.org/iss-pass.json?lat=${coords.latitude}&lon=${coords.longitude}`, (error, response, body) => {
+  request(`http://api.open-notify.org/iss-pass.json?lat=${coords.lat}&lon=${coords.lng}`, (error, response, body) => {
     if (error) callback(error, null);
     if (response.statusCode !== 200) {
       callback(Error(`Status Code ${response.statusCode} when fetching IP. Response: ${body}`), null);
